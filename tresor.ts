@@ -12,8 +12,19 @@ export class Tresor {
      this.gegenstaende = new Array();
    }
 
-   public gegenstand addGegenstand()  
+   addGegenstand(gegenstand: Gegenstand): void {
+    this.gegenstaende.push(gegenstand);
+   }
  
+   getGegenstand(id: number): Gegenstand{
+     let found: Gegenstand = this.gegenstaende.find(g => g.id == id);
+     if (found === undefined) {
+       throw new GegenstandNichtGefundenError
+     }
+     return  found;
+   }
+
+   
    //todo Gegenstand hinzufügen (addGegenstand)
    /**
     * Da gegenstaende ein Array ist und keine ArrayList,
